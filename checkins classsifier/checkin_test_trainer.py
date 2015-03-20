@@ -10,8 +10,8 @@ checkins_db = client.cs4242.checkins
 TEST_FOLD = 0											### the fold id to test, will not load this fold when trainning
 FOLD_COUNT = 10											### number of fold to split the database
 DATA_COUNT = checkins_db.count ()						### number of entry in the database
-LOWER_ID = data_count / FOLD_COUNT * TEST_FOLD			### the lower id bound of the test fold
-UPPER_ID = data_count / FOLD_COUNT * (TEST_FOLD + 1)	### the upper id bound of the test fold
+LOWER_ID = DATA_COUNT / FOLD_COUNT * TEST_FOLD			### the lower id bound of the test fold
+UPPER_ID = DATA_COUNT / FOLD_COUNT * (TEST_FOLD + 1)	### the upper id bound of the test fold
 
 ### Define namedtuple
 Location = namedtuple ("Location", ["latitude", "longidute"])
@@ -20,7 +20,7 @@ CheckInFeature = namedtuple ("CheckInFeature", ["userId", "location"])
 ### load the data from the database into memory
 test_data = []
 
-for i in range (0, data_count):
+for i in range (0, DATA_COUNT):
 	# Check whether the data is in the test fold
 	# If yes, do not process
 	if i in range (LOWER_ID, UPPER_ID):
