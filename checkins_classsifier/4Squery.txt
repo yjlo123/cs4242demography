@@ -1,0 +1,1 @@
+https://api.foursquare.com/v2/search/recommendations?&limit=50&intent=bestnearby&ll=43.18436097886516,-78.7144660949707&radius=2000
