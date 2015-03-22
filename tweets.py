@@ -7,7 +7,6 @@ import stopword_list
 import train
 import re
 import time
-from content_normalizer import ContentNormalizer
 import detect_language
 
 # Define the record tuple
@@ -103,4 +102,6 @@ def classify_user(gender_classifier, age_classifier, uid):
 		age_dict[age]+=1
 	#print gender_dict
 	#print age_dict
-	return max(gender_dict, key=gender_dict.get)
+	predicted_gender = max(gender_dict, key=gender_dict.get)
+	predicted_age = max(age_dict, key=age_dict.get)
+	return (predicted_gender, predicted_age)

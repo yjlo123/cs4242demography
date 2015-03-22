@@ -1,3 +1,7 @@
+'''
+This program separates the db collecton according to differnt categories
+e.g. separate according to age / gender
+'''
 import pymongo
 from topia.termextract import extract
 from textblob import TextBlob
