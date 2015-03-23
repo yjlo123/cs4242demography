@@ -10,7 +10,7 @@ class Trainer:
 		# Load the train database into memory
 		pp = pprint.PrettyPrinter(indent=4)
 
-		f_input = open (filename, 'rt')
+		f_input = open (filename, 'rU')
 		reader = csv.reader (f_input)
 		next (reader)
 
@@ -47,9 +47,8 @@ class Trainer:
 				train_set.append(key)
 			curr += 1
 		return (train_set, test_set)
-
-'''
-trainer = Trainer ()
-trainer.load_database("train.csv", 20)
-print (trainer.get_gender_by_id("c28a3cd0340791e3dee27addc32690c8"))
-'''
+	def get_all_test_id(self):
+		test_set = []
+		for key in self.__train_data:
+			test_set.append(key)
+		return test_set
