@@ -1,4 +1,5 @@
 from haversine_distance import HaversineDistance
+from checkin_analyzer import CheckinAnalyzer
 from params import *
 from namedtuple import *
 
@@ -122,6 +123,19 @@ class CheckInClassifier:
 				proximate_prob = float (classify_nearest[index]) / total_nearest
 				probablity[index] = prio_prob * proximate_prob
 
+			# Consult the analyzer and add weighted to feature
+			# GENDER only!!
+			# Only work when the FS_ANALYZER_ENABLE is set to True
+			if FS_ANALYZER_ENABLE and self.__feature_name == "gender":
+				analyzer = CheckinAnalyzer ()
+				analyze_result = analyzer.analyze (location)
+
+				male_index = self.__classify_type.index ("MALE")
+				female_index = self.__classify_type.index ("FEMALE")
+
+				probablity[male_index] += analyze_result[0].confident
+				probablity[female_index] += analyze_result[1].confident
+
 			# Get the highest probability index
 			# Also sum up the total probablity
 			highest_index = 0
@@ -130,6 +144,7 @@ class CheckInClassifier:
 				prob_sum += probablity[index]
 				if probablity[index] > probablity[highest_index]:
 					highest_index = index
+
 
 			# Report the result
 			classify_type = self.__classify_type[highest_index]
