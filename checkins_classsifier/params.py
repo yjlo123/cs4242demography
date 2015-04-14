@@ -11,7 +11,7 @@ CLASSIFY_RADIUS = 400			### Default result: How far should the
 								### Naive Bayes look for proximate checkins
 
 ### FourSquare Analyzer parameters:
-FS_ANALYZER_ENABLE = False		### Whether the classifier will attempt to
+FS_ANALYZER_ENABLE = True		### Whether the classifier will attempt to
 								### analyzer as external help
 FS_ANALYZER_RADIUS = 2000		### Query on 4S API locations within radius
 FS_ANALYZER_LIMIT = 50			### Maximum number of locations return in by
